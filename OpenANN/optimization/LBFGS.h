@@ -24,7 +24,7 @@ class LBFGS : public Optimizer
   Eigen::VectorXd optimum;
   int iteration, n, m;
   Eigen::VectorXd parameters, gradient;
-  double error;
+  double error_;
   alglib_impl::ae_state envState;
   alglib::minlbfgsstate state;
   alglib::real_1d_array xIn;
@@ -46,6 +46,7 @@ public:
   void reset();
   virtual Eigen::VectorXd result();
   virtual std::string name();
+  virtual double error();
 };
 
 } // namespace OpenANN

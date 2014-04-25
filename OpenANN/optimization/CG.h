@@ -24,7 +24,7 @@ class CG : public Optimizer
   Eigen::VectorXd optimum;
   int iteration, n;
   Eigen::VectorXd parameters, gradient;
-  double error;
+  double error_;
   alglib_impl::ae_state envState;
   alglib::mincgstate state;
   alglib::real_1d_array xIn;
@@ -38,6 +38,7 @@ public:
   virtual void optimize();
   virtual Eigen::VectorXd result();
   virtual std::string name();
+  virtual double error();
 private:
   void initialize();
   void reset();

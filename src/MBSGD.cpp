@@ -64,8 +64,7 @@ void MBSGD::optimize()
     std::stringstream ss;
 
     ss << "Iteration " << iteration;
-    ss << ", error = " << FloatingPointFormatter(accumulatedError /
-                                                 (double) batches, 4);
+    ss << ", error = " << FloatingPointFormatter(error(), 4);
 
     if(alphaDecay < 1.0)
       ss << ", alpha = " << FloatingPointFormatter(alpha, 3);
@@ -75,6 +74,11 @@ void MBSGD::optimize()
 
     OPENANN_DEBUG << ss.str();
   }
+}
+
+double MBSGD::error()
+{
+  return accumulatedError / (double) batches;
 }
 
 bool MBSGD::step()

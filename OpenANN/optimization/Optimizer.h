@@ -47,6 +47,11 @@ public:
    * @return name of the optimization algorithm
    */
   virtual std::string name() = 0;
+  /**
+   * Get the error.
+   * @return the error
+   */
+  virtual double error() = 0;
 };
 
 } // namespace OpenANN

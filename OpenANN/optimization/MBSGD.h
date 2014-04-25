@@ -179,6 +179,7 @@ public:
   virtual bool step();
   virtual Eigen::VectorXd result();
   virtual std::string name();
+  virtual double error();
 private:
   void initialize();
 };

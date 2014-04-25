@@ -14,7 +14,7 @@ namespace OpenANN
 {
 
 CG::CG()
-  : opt(0), iteration(-1), n(-1), error(0.0)
+  : opt(0), iteration(-1), n(-1), error_(0.0)
 {
 }
 
@@ -48,8 +48,8 @@ bool CG::step()
         for(unsigned i = 0; i < n; i++)
           parameters(i) = state.x[i];
         opt->setParameters(parameters);
-        error = opt->error();
-        state.f = error;
+        error_ = opt->error();
+        state.f = error_;
         if(iteration != state.c_ptr()->repiterationscount)
         {
           iteration = state.c_ptr()->repiterationscount;
@@ -63,8 +63,8 @@ bool CG::step()
         for(unsigned i = 0; i < n; i++)
           parameters(i) = state.x[i];
         opt->setParameters(parameters);
-        opt->errorGradient(error, gradient);
-        state.f = error;
+        opt->errorGradient(error_, gradient);
+        state.f = error_;
         for(unsigned i = 0; i < n; i++)
           state.g[i] = (double) gradient(i);
         if(iteration != state.c_ptr()->repiterationscount)
@@ -97,13 +97,18 @@ void CG::optimize()
   while(step())
   {
     OPENANN_DEBUG << "Iteration #" << iteration << ", training error = "
-                  << FloatingPointFormatter(error, 4);
+                  << FloatingPointFormatter(error(), 4);
     if(interrupt.isSignaled())
     {
       reset();
       break;
     }
   }
+}
+
+double CG::error()
+{
+  return error_;
 }
 
 Eigen::VectorXd CG::result()

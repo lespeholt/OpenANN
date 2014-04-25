@@ -79,6 +79,7 @@ public:
   bool restart();
   virtual void optimize();
   virtual bool step();
+  virtual double error();
   /**
    * Get next parameter vector.
    * @return parameter vector

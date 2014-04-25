@@ -215,7 +215,16 @@ void IPOPCMAES::setError(double fitness)
 
 bool IPOPCMAES::step()
 {
+  OPENANN_CHECK(false);
+
   return false;
+}
+
+double IPOPCMAES::error()
+{
+  OPENANN_CHECK(false);
+
+  return 0.0;
 }
 
 bool IPOPCMAES::terminated()

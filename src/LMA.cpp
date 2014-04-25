@@ -39,13 +39,18 @@ void LMA::optimize()
   {
     OPENANN_DEBUG << "Iteration #" << iteration
                   << ", training error = "
-                  << FloatingPointFormatter(errorValues.mean(), 4);
+                  << FloatingPointFormatter(error(), 4);
     if(interrupt.isSignaled())
     {
       reset();
       break;
     }
   }
+}
+
+double LMA::error()
+{
+  return errorValues.mean();
 }
 
 bool LMA::step()
