@@ -119,9 +119,7 @@ Eigen::VectorXd LMA::result()
 
 std::string LMA::name()
 {
-  std::stringstream stream;
-  stream << "Levenberg-Marquardt Algorithm";
-  return stream.str();
+  return "Levenberg-Marquardt Algorithm";
 }
 
 void LMA::initialize()
